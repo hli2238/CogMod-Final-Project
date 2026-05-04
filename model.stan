@@ -21,8 +21,10 @@ model {
   beta_emotion ~ normal(0, 5);
 
   // Likelihood
-  y ~ bernoulli_logit(beta_0 
-        + beta_cost * cost
-        + beta_success * success
-        + beta_emotion * emotion);
+  y ~ bernoulli_logit(
+    beta_0
+    + beta_cost * cost
+    + beta_success * success
+    + beta_emotion * emotion
+  );
 }
