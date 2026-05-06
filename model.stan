@@ -3,7 +3,7 @@ data {
   vector[N] cost;
   vector[N] success;
   vector[N] emotion;
-  int<lower=0,upper=1> y[N];
+  array[N] int<lower=0, upper=1> y;
 }
 
 parameters {
@@ -14,13 +14,11 @@ parameters {
 }
 
 model {
-  // Priors
   beta_0 ~ normal(0, 5);
   beta_cost ~ normal(0, 5);
   beta_success ~ normal(0, 5);
   beta_emotion ~ normal(0, 5);
 
-  // Likelihood
   y ~ bernoulli_logit(
     beta_0
     + beta_cost * cost
